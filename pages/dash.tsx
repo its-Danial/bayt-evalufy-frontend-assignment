@@ -39,7 +39,7 @@ const Dash: NextPage = (props) => {
   return (
     <div
       ref={widgetRef}
-      className="grid gap-5"
+      className="grid gap-5 px-12 py-8"
       style={{ gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))" }}
     >
       {widgetData &&
@@ -50,8 +50,10 @@ const Dash: NextPage = (props) => {
             title={widget.title}
             data={widgetData.find((item) => item.id === widget.id)!}
             gridPosition={{
-              gridColumn: `span ${widget.size.width}`,
-              gridRow: `span ${widget.size.height}`,
+              gridColumn: `span ${widget.position.y}`,
+              gridRow: `span ${widget.position.x}`,
+              width: widget.size.width,
+              height: widget.size.height,
             }}
           />
         ))}

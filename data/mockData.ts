@@ -1,4 +1,4 @@
-import { DailyPerformance, Kpi, SalesPerson } from "@/types/types";
+import { CityData, DailyPerformance, Kpi, SalesPerson, StockData } from "@/types/types";
 export const kpiData: Kpi[] = [
   {
     title: "Sales",
@@ -98,5 +98,116 @@ export const salesPeople: SalesPerson[] = [
     variance: "low",
     region: "Region B",
     status: "overperforming",
+  },
+];
+
+export const categoriesBarData = [
+  {
+    title: "Sales",
+    metric: "$ 456,000",
+  },
+  {
+    title: "Transactions",
+    metric: "89,123",
+  },
+  {
+    title: "Merchants",
+    metric: "22",
+  },
+  {
+    title: "Orders",
+    metric: "678",
+  },
+];
+
+export const regions = [
+  { key: "all", name: "All Regions" },
+  { key: "us", name: "United States" },
+  { key: "europe", name: "Europe" },
+  { key: "asia", name: "Asia" },
+];
+
+export const cities: CityData[] = [
+  {
+    name: "New York",
+    region: "us",
+    sales: 984888,
+    delta: "6.1%",
+    deltaType: "increase",
+  },
+  {
+    name: "London",
+    region: "europe",
+    sales: 456700,
+    delta: "1.2%",
+    deltaType: "moderateDecrease",
+  },
+  {
+    name: "San Francisco",
+    region: "us",
+    sales: 240000,
+    delta: "2.3%",
+    deltaType: "moderateIncrease",
+  },
+  {
+    name: "Hong Kong",
+    region: "asia",
+    sales: 390800,
+    delta: "0.5%",
+    deltaType: "moderateDecrease",
+  },
+  {
+    name: "Singapore",
+    region: "asia",
+    sales: 190800,
+    delta: "1.8%",
+    deltaType: "moderateIncrease",
+  },
+  {
+    name: "Zurich",
+    region: "europe",
+    sales: 164400,
+    delta: "3.4%",
+    deltaType: "decrease",
+  },
+  {
+    name: "Vienna",
+    region: "europe",
+    sales: 139800,
+    delta: "3.1%",
+    deltaType: "moderateIncrease",
+  },
+];
+
+export const stocks: StockData[] = [
+  {
+    name: "Off Running AG",
+    value: 10456,
+    performance: "6.1%",
+    deltaType: "increase",
+  },
+  {
+    name: "Not Normal Inc.",
+    value: 5789,
+    performance: "1.2%",
+    deltaType: "moderateDecrease",
+  },
+  {
+    name: "Logibling Inc.",
+    value: 4367,
+    performance: "2.3%",
+    deltaType: "moderateIncrease",
+  },
+  {
+    name: "Raindrop Inc.",
+    value: 3421,
+    performance: "0.5%",
+    deltaType: "moderateDecrease",
+  },
+  {
+    name: "Mwatch Group",
+    value: 1432,
+    performance: "3.4%",
+    deltaType: "decrease",
   },
 ];

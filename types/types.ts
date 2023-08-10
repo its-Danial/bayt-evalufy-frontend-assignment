@@ -1,4 +1,5 @@
 import { DeltaType } from "@tremor/react";
+import { type } from "os";
 
 export type Kpi = {
   title: string;
@@ -24,4 +25,19 @@ export type SalesPerson = {
   variance: string;
   region: string;
   status: string;
+};
+
+export type CityData = {
+  name: string;
+  region: string;
+  sales: number;
+  delta: string;
+  deltaType: DeltaType;
+};
+
+export type StockData = {
+  name: string;
+  value: number;
+  performance: string;
+  deltaType: DeltaType;
 };

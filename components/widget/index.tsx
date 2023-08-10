@@ -1,8 +1,11 @@
-import { Card } from "@tremor/react";
+import { Card, Title } from "@tremor/react";
 import { FC } from "react";
 import AreaChart from "./charts/AreaChart";
 import KipCardGrid from "./numeric/KipCardGrid";
 import TicketsTable from "./tables/TicketsTable";
+import CategoryBar from "./bar/CategoryBar";
+import DonutChartLegend from "./charts/DonutChartLegend";
+import DonutChartMetric from "./charts/DonutChartMetric";
 
 type WidgetProps = {
   type: string;
@@ -22,16 +25,22 @@ const index: FC<WidgetProps> = ({ type, title, data, gridPosition }) => {
         return <KipCardGrid data={data.data} />;
       case "Chart-Line":
         return <AreaChart />;
+      case "Category-Bar":
+        return <CategoryBar />;
+      case "DonutChart-Legend":
+        return <DonutChartLegend />;
+      case "DonutChart-Metric":
+        return <DonutChartMetric />;
       default:
         break;
     }
   };
 
   return (
-    <div style={gridPosition}>
-      {title && <h2>{title}</h2>}
+    <Card style={gridPosition}>
+      {title && <Title className="mb-4">{title}</Title>}
       {renderWidget()}
-    </div>
+    </Card>
   );
 };
 export default index;

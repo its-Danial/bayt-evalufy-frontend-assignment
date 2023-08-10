@@ -3,7 +3,7 @@ import { BadgeDelta, Card, Flex, Grid, Metric, ProgressBar, Text } from "@tremor
 
 export default function KpiCardGrid() {
   return (
-    <Grid numItemsLg={3} className="mt-6 gap-6">
+    <Grid numItemsLg={3} className="gap-6">
       {kpiData.map((item) => (
         <Card key={item.title}>
           <Flex alignItems="start">
