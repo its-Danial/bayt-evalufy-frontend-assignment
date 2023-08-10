@@ -1,5 +1,7 @@
 import { Fragment } from "react";
 import DropDown from "./DropDownMenu";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navOptions = [
   { name: "Repairs", selectMenu: true, menuOptions: ["options one", "options two", "options three"] },
@@ -7,16 +9,21 @@ const navOptions = [
   { name: "Customer", selectMenu: true, menuOptions: ["options one", "options two", "options three"] },
   { name: "Point of Sale", selectMenu: false },
   { name: "Reports", selectMenu: false },
-  { name: "Campaigner", selectMenu: false },
+  // { name: "Campaigner", selectMenu: false },
   { name: "Expenses", selectMenu: false },
 ];
 
 export default function Navbar() {
+  const currentRoute = usePathname();
+
   return (
     <nav className="mx-auto max-w-full px-4 sm:px-6 lg:px-12 bg-white shadow-sm">
       <div className="flex h-16 justify-between">
         <div className="flex">
-          <div className="flex flex-shrink-0 items-center rounded-md px-2 hover:bg-gray-100 hover:bg-opacity-90 cursor-pointer ">
+          <Link
+            href="/"
+            className="flex flex-shrink-0 items-center rounded-md px-2 hover:bg-gray-100 hover:bg-opacity-90 cursor-pointer "
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -33,7 +40,7 @@ export default function Navbar() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
             <h1 className="font-bold text-xl">RepairDesk</h1>
-          </div>
+          </Link>
           <div className="hidden sm:-my-px sm:ml-14 sm:flex sm:space-x-2">
             {navOptions.map((item) => (
               <Fragment key={item.name}>
@@ -48,6 +55,14 @@ export default function Navbar() {
                 )}
               </Fragment>
             ))}
+            <Link
+              href="/assignment-two"
+              className={`my-auto rounded-md px-4 py-2 text-[15px] hover:bg-green-400 hover:text-white font-semibold ${
+                currentRoute === "/assignment-two" && "bg-green-400 text-white"
+              }`}
+            >
+              Assignment Two Solution
+            </Link>
           </div>
         </div>
         <button className="my-auto group">
