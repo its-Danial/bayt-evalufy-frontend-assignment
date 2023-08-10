@@ -1,8 +1,8 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## **Bayt/Evalufy - Front End Assignment**
 
-## Getting Started
+The Dynamic Dashboard Builder [website](https://bayt-evalufy-frontend-assignment.vercel.app/) is live and hosted on Vercel. It was built using Next.js with React.js and Typescript.
 
-First, run the development server:
+To run the project locally clone it and then enter one of the following:
 
 ```bash
 npm run dev
@@ -12,27 +12,47 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Assignment # 1
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+As per the suggestion in the assignment PDF, [mocky](https://designer.mocky.io/) has been used for the API of mock data sources. Although the same data can be found in the data/mockData.ts file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+The configuration file which controls the following attributes is located in lib/widgetConfig.ts
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Widget type
+- Widget order
+- Widget position in the grid, size/width
+- Data source
+- Priority; (fetched and rendered first)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The type of widgets provided are the following:
 
-## Learn More
+- Bar chart
+- Area chart
+- Donut Chart (Legend + Dropdown + List)
+- Donut Chart (Metric + Toggle + List )
+- Kip Card (Numerics)
 
-To learn more about Next.js, take a look at the following resources:
+More widgets can easily be added but for the purpose of this assignment, I tried to use the ones similar to that shown in the sample dashboard.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Notes:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```Javascript
+{
+  id: 6, // widget Id
+  type: "DonutChart-Metric", // widget type
+  order: 6, // determines the placement order
+  position: { x: 1, y: 2 }, // determines the grid span position
+  size: { width: "100%", height: "100%" }, // CSS size
+  dataSource: "https://run.mocky.io/v3/676e9537-9c3e-405a-8c91-80a62dbecbf7", //API data source
+  priority: 2, // data fetching and rendering priority
+  title: "DonutChart Metric Widget", // widget title
+}
+```
 
-## Deploy on Vercel
+### Assignment # 1
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The solution for both parts A and B can be found at lib/assignmentTwoSolution.ts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+An interface to test the solution is also available live on the [website](https://bayt-evalufy-frontend-assignment.vercel.app/assignment-two).
+
+If you decide to use the interface on the website, you must enter a JSON object that can be properly parsed to a Javascript object to be searched.
