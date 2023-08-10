@@ -1,10 +1,15 @@
-import { categoriesBarData } from "@/data/mockData";
-import { BadgeDelta, Card, Flex, Grid, Metric, Text, CategoryBar as TremorCategoryBar } from "@tremor/react";
+// import { categoriesBarData } from "@/data/mockData";
+import { BadgeDelta, Card, Flex, Metric, Text, CategoryBar as TremorCategoryBar } from "@tremor/react";
 import { FC } from "react";
 
-type CategoryBarProps = {};
+type CategoryBarProps = {
+  data: {
+    title: string;
+    metric: string;
+  }[];
+};
 
-const CategoryBar: FC<CategoryBarProps> = (props) => {
+const CategoryBar: FC<CategoryBarProps> = ({ data: categoriesBarData }) => {
   return (
     <div className="max-w-lg mx-auto">
       <Card>

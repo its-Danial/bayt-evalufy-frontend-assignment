@@ -12,7 +12,7 @@ import {
   Card,
 } from "@tremor/react";
 import { useState } from "react";
-import { performanceData } from "@/data/mockData";
+// import { performanceData } from "@/data/mockData";
 
 const usNumberformatter = (number: number, decimals = 0) =>
   Intl.NumberFormat("us", {
@@ -37,7 +37,14 @@ const Kpis = {
 
 const kpiList = [Kpis.Sales, Kpis.Profit, Kpis.Customers];
 
-export default function AreaChart() {
+import { FC } from "react";
+import { DailyPerformance } from "@/types/types";
+
+type AreaChartProps = {
+  data: DailyPerformance[];
+};
+
+const AreaChart: FC<AreaChartProps> = ({ data: performanceData }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const selectedKpi = kpiList[selectedIndex];
 
@@ -86,4 +93,5 @@ export default function AreaChart() {
       </div>
     </Card>
   );
-}
+};
+export default AreaChart;

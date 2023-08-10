@@ -1,32 +1,35 @@
 import {
   BadgeDelta,
+  Bold,
   Button,
   Card,
-  DeltaType,
+  Divider,
   DonutChart,
   Flex,
-  TabGroup,
-  Tab,
-  TabList,
-  Bold,
-  Divider,
   List,
   ListItem,
   Metric,
+  Tab,
+  TabGroup,
+  TabList,
   Text,
   Title,
 } from "@tremor/react";
 
-import { ViewListIcon, ChartPieIcon } from "@heroicons/react/outline";
+import { ChartPieIcon, ViewListIcon } from "@heroicons/react/outline";
 
+// import { stocks } from "@/data/mockData";
 import { ArrowNarrowRightIcon } from "@heroicons/react/solid";
 import { FC, useState } from "react";
-import { stocks } from "@/data/mockData";
+import { StockData } from "@/types/types";
 
 const valueFormatter = (number: number) => `$ ${Intl.NumberFormat("us").format(number).toString()}`;
-type DonutChartMetricProps = {};
 
-const DonutChartMetric: FC<DonutChartMetricProps> = (props) => {
+type DonutChartMetricProps = {
+  data: StockData[];
+};
+
+const DonutChartMetric: FC<DonutChartMetricProps> = ({ data: stocks }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   return (
     <Card className="max-w-md mx-auto">

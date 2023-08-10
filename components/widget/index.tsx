@@ -2,10 +2,11 @@ import { Card, Title } from "@tremor/react";
 import { FC } from "react";
 import AreaChart from "./charts/AreaChart";
 import KipCardGrid from "./numeric/KipCardGrid";
-import TicketsTable from "./tables/TicketsTable";
+
 import CategoryBar from "./bar/CategoryBar";
 import DonutChartLegend from "./charts/DonutChartLegend";
 import DonutChartMetric from "./charts/DonutChartMetric";
+import TicketsTable from "./tables/TicketsTable";
 
 type WidgetProps = {
   type: string;
@@ -20,17 +21,18 @@ const index: FC<WidgetProps> = ({ type, title, data, gridPosition }) => {
   const renderWidget = () => {
     switch (type) {
       case "Table":
-        return <TicketsTable />;
+        return <TicketsTable data={data.data} />;
       case "Numeric":
         return <KipCardGrid data={data.data} />;
       case "Chart-Line":
-        return <AreaChart />;
+        return <AreaChart data={data.data} />;
       case "Category-Bar":
-        return <CategoryBar />;
+        return <CategoryBar data={data.data} />;
       case "DonutChart-Legend":
-        return <DonutChartLegend />;
+        // @ts-ignore
+        return <DonutChartLegend data={data.data} />;
       case "DonutChart-Metric":
-        return <DonutChartMetric />;
+        return <DonutChartMetric data={data.data} />;
       default:
         break;
     }

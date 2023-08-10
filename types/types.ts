@@ -41,3 +41,21 @@ export type StockData = {
   performance: string;
   deltaType: DeltaType;
 };
+
+export type DonutChartLegendDataType = {
+  regions: Region[];
+  cities: City[];
+};
+
+export interface City {
+  name: string;
+  region: string;
+  sales: number;
+  delta: string;
+  deltaType: string;
+}
+
+export interface Region {
+  key: string;
+  name: string;
+}

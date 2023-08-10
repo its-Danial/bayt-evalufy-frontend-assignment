@@ -1,29 +1,32 @@
-import { cities, regions } from "@/data/mockData";
-import { CityData } from "@/types/types";
+// import { donutChartLegendData } from "@/data/mockData";
+import { CityData, DonutChartLegendDataType } from "@/types/types";
 import { BadgeDelta, Card, DonutChart, Flex, Legend, List, ListItem, Select, SelectItem, Title } from "@tremor/react";
 import { useEffect, useState } from "react";
 import { FC } from "react";
 
-type DonutChartLegendProps = {};
+type DonutChartLegendProps = {
+  data: DonutChartLegendDataType;
+};
 
 const filterByRegion = (region: string, data: CityData[]) =>
   region === "all" ? data : data.filter((city) => city.region === region);
 
-const DonutChartLegend: FC<DonutChartLegendProps> = (props) => {
+const DonutChartLegend: FC<DonutChartLegendProps> = ({ data: donutChartLegendData }) => {
   const [selectedRegion, setSelectedRegion] = useState("all");
-  const [filteredData, setFilteredData] = useState(cities);
+  const [filteredData, setFilteredData] = useState(donutChartLegendData.cities);
 
   useEffect(() => {
-    const data = cities;
+    const data = donutChartLegendData.cities;
+    // @ts-ignore
     setFilteredData(filterByRegion(selectedRegion, data));
-  }, [selectedRegion]);
+  }, [selectedRegion, donutChartLegendData.cities]);
 
   return (
     <Card className="max-w-md mx-auto">
       <Flex className="space-x-8" justifyContent="start" alignItems="center">
         <Title>Sales</Title>
         <Select onValueChange={setSelectedRegion} placeholder="Region Selection">
-          {regions.map((region) => (
+          {donutChartLegendData.regions.map((region) => (
             <SelectItem key={region.key} value={region.key}>
               {region.name}
             </SelectItem>
@@ -42,6 +45,7 @@ const DonutChartLegend: FC<DonutChartLegendProps> = (props) => {
         {filteredData.map((city) => (
           <ListItem key={city.name}>
             {city.name}
+            {/* @ts-ignore */}
             <BadgeDelta deltaType={city.deltaType} size="xs">
               {city.delta}
             </BadgeDelta>

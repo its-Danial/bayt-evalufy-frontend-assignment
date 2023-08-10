@@ -27,7 +27,13 @@ const deltaTypes: { [key: string]: DeltaType } = {
   underperforming: "moderateDecrease",
 };
 
-export default function TicketsTable() {
+import { FC } from "react";
+
+type TicketsTableProps = {
+  data: SalesPerson[];
+};
+
+const TicketsTable: FC<TicketsTableProps> = ({ data: salesPeople }) => {
   const [selectedStatus, setSelectedStatus] = useState("all");
   const [selectedNames, setSelectedNames] = useState<string[]>([]);
 
@@ -97,4 +103,6 @@ export default function TicketsTable() {
       </Table>
     </Card>
   );
-}
+};
+
+export default TicketsTable;

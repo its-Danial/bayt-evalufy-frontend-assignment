@@ -1,33 +1,67 @@
-import KpiCardGrid from "@/components/layouts/KpiCardGrid";
 import GreetingsAndSearch from "@/components/section/GreetingsAndSearch";
-import CategoryBar from "@/components/widget/bar/CategoryBar";
-import AreaChartView from "@/components/widget/charts/AreaChart";
-import TicketsTable from "@/components/widget/tables/TicketsTable";
-import { Card, Col, Grid } from "@tremor/react";
+import Widget from "@/components/widget";
+import widgetConfig from "@/lib/widgetConfig";
+import axios from "axios";
+import Head from "next/head";
 
+import { useEffect, useRef, useState } from "react";
 export default function DashboardHome() {
-  return (
-    <main className="px-12 py-8">
-      <GreetingsAndSearch />
-      <Grid numItemsLg={6} className="gap-6 mt-6">
-        {/* Main section */}
-        <Col numColSpanLg={4} className="space-y-6">
-          <KpiCardGrid />
-          <AreaChartView />
-          <TicketsTable />
-        </Col>
+  const [widgetData, setWidgetData] = useState<{ id: number; data: any[] }[]>();
+  // Sort widgetConfig based on priority
+  const prioritySortedWidgets = [...widgetConfig].sort((a, b) => a.priority - b.priority);
+  const [sortedWidgets, setSortedWidgets] = useState(prioritySortedWidgets);
 
-        {/* KPI sidebar */}
-        <Col numColSpanLg={2} className="space-y-6">
-          <CategoryBar />
-          <Card>
-            <div className="h-24" />
-          </Card>
-          <Card>
-            <div className="h-24" />
-          </Card>
-        </Col>
-      </Grid>
-    </main>
+  const widgetContainerRef = useRef(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await Promise.all(
+        prioritySortedWidgets.map(async (widget) => {
+          const response = await axios.get(widget.dataSource);
+          return { id: widget.id, data: response.data };
+          // return response.data;
+        })
+      );
+      setWidgetData(data);
+    }
+    fetchData();
+  }, [prioritySortedWidgets]);
+
+  useEffect(() => {
+    if (widgetContainerRef.current) {
+      // Sort widgetConfig based on order after fetch and render
+      setTimeout(() => {
+        const orderSortedWidget = [...widgetConfig].sort((a, b) => a.order - b.order);
+        setSortedWidgets(orderSortedWidget);
+      }, 1000);
+    }
+  }, [widgetContainerRef]);
+
+  return (
+    <>
+      <Head>
+        <title>Dynamic Dashboard Builder</title>
+      </Head>
+      <main className="px-12 py-8" ref={widgetContainerRef}>
+        <GreetingsAndSearch />
+        <div className="grid gap-5 mt-6" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))" }}>
+          {widgetData &&
+            sortedWidgets.map((widget, index) => (
+              <Widget
+                key={index}
+                type={widget.type}
+                title={widget.title}
+                data={widgetData.find((item) => item.id === widget.id)!}
+                gridPosition={{
+                  gridColumn: `span ${widget.position.y}`,
+                  gridRow: `span ${widget.position.x}`,
+                  width: widget.size.width,
+                  height: widget.size.height,
+                }}
+              />
+            ))}
+        </div>
+      </main>
+    </>
   );
 }

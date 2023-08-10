@@ -1,6 +1,7 @@
 import { contains, hasUniqueCharacters } from "@/lib/assignmentTwoSolution";
 import { testJSON } from "@/utils/helpers";
 import { Badge, Card, Text, TextInput, Title } from "@tremor/react";
+import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -110,74 +111,79 @@ export default function AssignmentTwo() {
   };
 
   return (
-    <main className="px-12 py-12">
-      <Title>Assignment Two solution</Title>
-      {/* Question One */}
-      <Card className="mt-6 mx-auto">
-        <div>
-          <h3 className="text-base font-normal">
-            A. Question Write a function that determines if a given string has all unique characters.
-          </h3>
-          <div className="mt-6">
-            <TextInput
-              placeholder="Enter a string"
-              onChange={handleQuestionOneChange}
-              value={questionOneData.inputString}
-            />
+    <>
+      <Head>
+        <title>Assignment Two solution</title>
+      </Head>
+      <main className="px-12 py-12">
+        <Title>Assignment Two solution</Title>
+        {/* Question One */}
+        <Card className="mt-6 mx-auto">
+          <div>
+            <h3 className="text-base font-normal">
+              A. Question Write a function that determines if a given string has all unique characters.
+            </h3>
             <div className="mt-6">
-              {/* @ts-ignore */}
-              <Badge className="w-full h-10" color={questionOneData.badge.color}>
-                {questionOneData.badge.text}
-              </Badge>
-            </div>
-          </div>
-        </div>
-      </Card>
-      {/* Question Two */}
-      <Card className="mt-6">
-        <div>
-          <h3 className="text-base font-normal">
-            B. Write a function called contains that searches for a value in a nested object. It returns true if the
-            object contains that value.
-          </h3>
-          <Text className="mt-1">
-            <strong>Note:</strong> Enter a JSON object, it will then be parsed into a Javascript object using{" "}
-            <i>JSON.parse(inputNestedObject)</i>
-          </Text>
-          <Text className="mt-1">
-            You can covert Javascript objects to JSON for test through{" "}
-            <Link
-              className="text-blue-400 hover:text-blue-600"
-              href="https://www.convertsimple.com/convert-javascript-to-json/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              www.convertsimple.com
-            </Link>
-          </Text>
-          <div className="mt-6 flex gap-4">
-            <TextInput
-              className="flex-1"
-              placeholder="Enter a nested JSON object"
-              onChange={handleQuestionTwoObjectChange}
-              value={questionTwoData.inputNestedObject}
-              multiple
-            />
-            <div className="flex-1">
               <TextInput
-                multiple
-                placeholder="Enter a search value"
-                onChange={handleQuestionTwoSearchChange}
-                value={questionTwoData.inputSearchValue}
+                placeholder="Enter a string"
+                onChange={handleQuestionOneChange}
+                value={questionOneData.inputString}
               />
-              {/* @ts-ignore */}
-              <Badge className="w-full h-10 mt-4" color={questionTwoData.badge.color}>
-                {questionTwoData.badge.text}
-              </Badge>
+              <div className="mt-6">
+                {/* @ts-ignore */}
+                <Badge className="w-full h-10" color={questionOneData.badge.color}>
+                  {questionOneData.badge.text}
+                </Badge>
+              </div>
             </div>
           </div>
-        </div>
-      </Card>
-    </main>
+        </Card>
+        {/* Question Two */}
+        <Card className="mt-6">
+          <div>
+            <h3 className="text-base font-normal">
+              B. Write a function called contains that searches for a value in a nested object. It returns true if the
+              object contains that value.
+            </h3>
+            <Text className="mt-1">
+              <strong>Note:</strong> Enter a JSON object, it will then be parsed into a Javascript object using{" "}
+              <i>JSON.parse(inputNestedObject)</i>
+            </Text>
+            <Text className="mt-1">
+              You can covert Javascript objects to JSON for test through{" "}
+              <Link
+                className="text-blue-400 hover:text-blue-600"
+                href="https://www.convertsimple.com/convert-javascript-to-json/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                www.convertsimple.com
+              </Link>
+            </Text>
+            <div className="mt-6 flex gap-4">
+              <TextInput
+                className="flex-1"
+                placeholder="Enter a nested JSON object"
+                onChange={handleQuestionTwoObjectChange}
+                value={questionTwoData.inputNestedObject}
+                multiple
+              />
+              <div className="flex-1">
+                <TextInput
+                  multiple
+                  placeholder="Enter a search value"
+                  onChange={handleQuestionTwoSearchChange}
+                  value={questionTwoData.inputSearchValue}
+                />
+                {/* @ts-ignore */}
+                <Badge className="w-full h-10 mt-4" color={questionTwoData.badge.color}>
+                  {questionTwoData.badge.text}
+                </Badge>
+              </div>
+            </div>
+          </div>
+        </Card>
+      </main>
+    </>
   );
 }
