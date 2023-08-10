@@ -13,6 +13,7 @@ export default function DashboardHome() {
 
   const widgetContainerRef = useRef(null);
 
+  // fetch data based on priority
   useEffect(() => {
     async function fetchData() {
       const data = await Promise.all(
@@ -30,10 +31,11 @@ export default function DashboardHome() {
   useEffect(() => {
     if (widgetContainerRef.current) {
       // Sort widgetConfig based on order after fetch and render
+      // I added setTimeout so that the widgets order can be seen changing otherwise it happens to fast to demonstrate.
       setTimeout(() => {
         const orderSortedWidget = [...widgetConfig].sort((a, b) => a.order - b.order);
         setSortedWidgets(orderSortedWidget);
-      }, 1000);
+      }, 1500);
     }
   }, [widgetContainerRef]);
 
