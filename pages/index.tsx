@@ -1,10 +1,10 @@
 import KpiCardGrid from "@/components/layouts/KpiCardGrid";
 import GreetingsAndSearch from "@/components/section/GreetingsAndSearch";
-import AreaChartView from "@/components/widgets/charts/AreaChartView";
-import TicketsTable from "@/components/widgets/tables/TicketsTable";
+import AreaChartView from "@/components/widget/charts/AreaChart";
+import TicketsTable from "@/components/widget/tables/TicketsTable";
 import { Card } from "@tremor/react";
 
-export default function Home() {
+export default function DashboardHome() {
   return (
     <main className="px-12 py-8">
       <GreetingsAndSearch />

@@ -1,13 +1,13 @@
 import { BadgeDelta, Card, Flex, Metric, ProgressBar, Text } from "@tremor/react";
 
-// Single KPI card in the demo dashboard with sample inputs
-export default function KpiCard() {
+export default function KipCard() {
   return (
-    <Card className="max-w-lg mx-auto">
+    // <Card className="max-w-lg mx-auto">
+    <div>
       <Flex alignItems="start">
-        <div>
+        <div className="truncate">
           <Text>Sales</Text>
-          <Metric>$ 12,699</Metric>
+          <Metric className="truncate">$ 12,699</Metric>
         </div>
         <BadgeDelta deltaType="moderateIncrease">13.2%</BadgeDelta>
       </Flex>
@@ -16,6 +16,7 @@ export default function KpiCard() {
         <Text>$ 220,500</Text>
       </Flex>
       <ProgressBar value={15.9} className="mt-2" />
-    </Card>
+    </div>
+    // </Card>
   );
 }

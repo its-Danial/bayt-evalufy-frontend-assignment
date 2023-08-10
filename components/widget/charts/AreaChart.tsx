@@ -1,5 +1,16 @@
 import { InformationCircleIcon } from "@heroicons/react/solid";
-import { AreaChart, Color, Flex, Icon, Tab, TabGroup, TabList, Text, Title } from "@tremor/react";
+import {
+  AreaChart as TremorAreaChart,
+  Color,
+  Flex,
+  Icon,
+  Tab,
+  TabGroup,
+  TabList,
+  Text,
+  Title,
+  Card,
+} from "@tremor/react";
 import { useState } from "react";
 import { performanceData } from "@/data/mockData";
 
@@ -26,7 +37,7 @@ const Kpis = {
 
 const kpiList = [Kpis.Sales, Kpis.Profit, Kpis.Customers];
 
-export default function AreaChartView() {
+export default function AreaChart() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const selectedKpi = kpiList[selectedIndex];
 
@@ -42,7 +53,7 @@ export default function AreaChartView() {
   };
 
   return (
-    <>
+    <Card>
       <div className="md:flex justify-between">
         <div>
           <Flex className="space-x-0.5" justifyContent="start" alignItems="center">
@@ -67,12 +78,12 @@ export default function AreaChartView() {
       </div>
       {/* web */}
       <div className="mt-8 hidden sm:block">
-        <AreaChart {...areaChartArgs} />
+        <TremorAreaChart {...areaChartArgs} />
       </div>
       {/* mobile */}
       <div className="mt-8 sm:hidden">
-        <AreaChart {...areaChartArgs} startEndOnly={true} showGradient={false} showYAxis={false} />
+        <TremorAreaChart {...areaChartArgs} startEndOnly={true} showGradient={false} showYAxis={false} />
       </div>
-    </>
+    </Card>
   );
 }

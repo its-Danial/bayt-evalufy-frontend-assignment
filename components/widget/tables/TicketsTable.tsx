@@ -3,6 +3,7 @@ import { SalesPerson } from "@/types/types";
 import { InformationCircleIcon } from "@heroicons/react/solid";
 import {
   BadgeDelta,
+  Card,
   DeltaType,
   Flex,
   Icon,
@@ -35,7 +36,7 @@ export default function TicketsTable() {
     (selectedNames.includes(salesPerson.name) || selectedNames.length === 0);
 
   return (
-    <>
+    <Card>
       <div>
         <Flex className="space-x-0.5" justifyContent="start" alignItems="center">
           <Title> Performance History </Title>
@@ -94,6 +95,6 @@ export default function TicketsTable() {
             ))}
         </TableBody>
       </Table>
-    </>
+    </Card>
   );
 }
