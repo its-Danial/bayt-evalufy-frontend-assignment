@@ -1,10 +1,11 @@
 import GreetingsAndSearch from "@/components/section/GreetingsAndSearch";
+import Skeleton from "@/components/ui/Skeleton";
 import Widget from "@/components/widget";
 import widgetConfig from "@/lib/widgetConfig";
 import axios from "axios";
 import Head from "next/head";
-
 import { useEffect, useRef, useState } from "react";
+
 export default function DashboardHome() {
   const [widgetData, setWidgetData] = useState<{ id: number; data: any[] }[]>();
   // Sort widgetConfig based on priority
@@ -47,6 +48,7 @@ export default function DashboardHome() {
       <main className="px-12 py-8" ref={widgetContainerRef}>
         <GreetingsAndSearch />
         <div className="grid gap-5 mt-6" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))" }}>
+          <Skeleton />
           {widgetData &&
             sortedWidgets.map((widget, index) => (
               <Widget
