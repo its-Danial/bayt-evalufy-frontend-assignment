@@ -2,37 +2,36 @@ import { Card, Title } from "@tremor/react";
 import { FC } from "react";
 import AreaChart from "./charts/AreaChart";
 import KipCardGrid from "./numeric/KipCardGrid";
-
 import CategoryBar from "./bar/CategoryBar";
 import DonutChartLegend from "./charts/DonutChartLegend";
 import DonutChartMetric from "./charts/DonutChartMetric";
 import TicketsTable from "./tables/TicketsTable";
+import Skeleton from "@/components/ui/Skeleton";
 
 type WidgetProps = {
   type: string;
   title: string;
-  data: { id: number; data: any[] };
+  data: any[];
   gridPosition: object;
+  isLoading: boolean;
 };
 
-const index: FC<WidgetProps> = ({ type, title, data, gridPosition }) => {
-  console.log(type, data.data);
-
+const index: FC<WidgetProps> = ({ type, title, data, gridPosition, isLoading }) => {
   const renderWidget = () => {
     switch (type) {
       case "Table":
-        return <TicketsTable data={data.data} />;
+        return <TicketsTable data={data} />;
       case "Numeric":
-        return <KipCardGrid data={data.data} />;
+        return <KipCardGrid data={data} />;
       case "Chart-Line":
-        return <AreaChart data={data.data} />;
+        return <AreaChart data={data} />;
       case "Category-Bar":
-        return <CategoryBar data={data.data} />;
+        return <CategoryBar data={data} />;
       case "DonutChart-Legend":
         // @ts-ignore
-        return <DonutChartLegend data={data.data} />;
+        return <DonutChartLegend data={data} />;
       case "DonutChart-Metric":
-        return <DonutChartMetric data={data.data} />;
+        return <DonutChartMetric data={data} />;
       default:
         break;
     }
@@ -40,8 +39,8 @@ const index: FC<WidgetProps> = ({ type, title, data, gridPosition }) => {
 
   return (
     <Card style={gridPosition}>
-      {title && <Title className="mb-4">{title}</Title>}
-      {renderWidget()}
+      {!isLoading && title && <Title className="mb-4">{title}</Title>}
+      {isLoading ? <Skeleton caption={title} /> : renderWidget()}
     </Card>
   );
 };
