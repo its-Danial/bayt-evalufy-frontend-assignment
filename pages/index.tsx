@@ -43,7 +43,6 @@ export default function DashboardHome() {
             );
           }, 2500);
         } catch (error) {
-          alert("Error fetching data, check console");
           console.error("Error fetching data:", error);
         }
       }
